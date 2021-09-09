@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 15px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      align-items: flex-end;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .glass {
+      width: 100%;
+      height: 8rem;
+      background: #eee;
+      display: flex;
+      justify-content: center;
+    }
+
+    .dock {
+      --scale: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dock li {
+      font-size: calc(6rem * var(--scale));
+      padding: 0 0.5rem;
+      position: relative;
+      top: calc((6rem * var(--scale) - 6rem) / 2 * -1);
+      transition: 15ms all ease-out;
+    }
+
+    .dock .loading {
+      animation: 1s loading ease-in infinite;
+    }
+
+    @keyframes loading {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      60% {
+        transform: translateY(-40px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glass">
+    <ul class="dock ">
+      <li>😃</li>
+      <li>😊</li>
+      <li>😜</li>
+      <li>😍</li>
+      <li>🤩</li>
+      <li>🥳</li>
+      <li>🥶</li>
+    </ul>
+  </div>
+  <script>
+    var list = document.querySelectorAll(".dock li")
+
+    list.forEach(v => {
+      /* 添加点击图标动画 */
+      v.addEventListener('click', (e) => {
+        e.currentTarget.classList.add('loading')
+        console.log("?");
+      })
+      v.addEventListener('mousemove', (e) => {
+        //console.log(e);
+        var item = e.target
+        let itemRect = item.getBoundingClientRect()
+        let offset = Math.abs(e.clientX - itemRect.left) / itemRect.width
+        let prev = v.previousElementSibling || null
+        let next = v.nextElementSibling || null
+        let scale = 0.6
+        resetScale()
+        if (prev) {
+          //左边的元素 0~1 要变成 1~0 所以要相反
+          prev.style.setProperty('--scale', 1 + scale * Math.abs(offset - 1))
+        }
+        v.style.setProperty('--scale', 1 + scale)
+        if (next) {
+          next.style.setProperty('--scale', 1 + scale * offset)
+        }
+      })
+
+
+    })
+
+    //鼠标离开后 放大还原
+    document.querySelector('.dock').addEventListener('mouseleave', (e) => {
+      resetScale()
+    })
+
+    function resetScale() {
+      document.querySelectorAll('.dock li').forEach(li => {
+        li.style.setProperty('--scale', 1)
+      })
+    }
+  </script>
+</body>
+
+</html>
+
+<!-- 
+   mouseEvent 的属性
+
+client x 浏览器显示区域左上角
+
+offset x  目标元素左上角
+
+page x  相对于页面左上角
+
+layer x  定位父元素左上角
+
+screen x  屏幕左上角
+
+  -->
+
+<!-- 
+    事件对象的属性
+    type
+    eventPhase
+    target ：派发事件的目标对象
+    currentTarget：当前正在调用监听器的对象，也就是当前addEventListener是绑定在哪个对象上
+    cancelable 
+    preventDefault（）
+    bubbles  是否开启冒泡功能
+    stopImmediatePropagation（） 停止当前事件的传播 并让当前对象的所有监听都不执行
+    stopPropagation（） 停止当前事件的传播，但不会停止当前正在处理的对象其他监听事件的执行
+
+
+   -->

@@ -4,5 +4,11 @@
 
 ![img](https://github.com/hxh-ly/css-wheel/blob/main/image/skeleton.gif)
 
-- 模仿macOS的底部滑动
+- 模仿macOS_dock
+
+![img](https://github.com/hxh-ly/css-wheel/blob/main/image/macOS_dock.gif)
+
+
+
+
 
