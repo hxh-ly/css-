@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    :root {
+      --loading-grey: #ededed;
+    }
+
+    body {
+      display: flex;
+      font-size: 15px;
+      background-color: #f6f6f6;
+      justify-content: space-evenly;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      width: 320px;
+      background-color: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0px 4px 6px rgba(255, 255, 255, .12);
+    }
+
+    .image {
+      height: 200px;
+    }
+
+    .image img {
+
+      width: 100%;
+      height: inherit;
+      overflow: hidden;
+      object-fit: cover
+    }
+
+    .content {
+
+      padding: 2rem 1.8rem;
+    }
+
+    .content h4 {
+      margin: 0 0 1rem;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.4rem;
+    }
+
+    .loading .image,
+    .loading h4,
+    .loading .description {
+      background-color: var(--loading-grey);
+      background: linear-gradient(100deg, rgba(255, 255, 255, 0) 40%,
+          rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, 0) 60%) var(--loading-grey);
+      background-size: 200% 100%;
+      background-position-x: 180%;
+      animation: loading 1s ease-in-out infinite;
+    }
+
+    .loading h4 {
+      min-height: 1.6rem;
+      border-radius: 4px;
+      animation-delay: 0.05s;
+    }
+
+    .loading .description {
+      min-height: 4rem;
+      border-radius: 4px;
+      animation-delay: 0.06s;
+    }
+
+    @keyframes loading {
+      to {
+        background-position-x: -20%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="image">
+      <img src="./img/bike.jpg" alt="">
+    </div>
+    <div class="content">
+      <h4>Code day if Live</h4>
+      <div class="description">
+        i want to be a happy man.live free,don"t worry about the other day.
+        do not shy ,please be brave.love is love.
+      </div>
+    </div>
+  </div>
+
+  <div class="card loading">
+    <div class="image">
+    </div>
+    <div class="content">
+      <h4></h4>
+      <div class="description">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
