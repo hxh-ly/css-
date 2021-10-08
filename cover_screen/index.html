@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css//style.css">
+  <title>Document</title>
+  <style>
+    .over {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(134, 134, 134, 0.6);
+    }
+
+    .dialog {
+      display: none;
+      width: 400px;
+      height: 300px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      background-color: rgb(238, 139, 139);
+      border-radius: 10px;
+    }
+
+    .dialog .close {
+      display: fixed;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      background-color: #fff;
+      text-align: center;
+    }
+  </style>
+</head>
+<!--  -->
+
+<body>
+  <!-- 遮罩层 -->
+  <div class="over"></div>
+  <!-- 弹框 -->
+  <div class="dialog">
+    <div class="close">x</div>
+  </div>
+  <!-- 内容 -->
+  <h1>页面的主题内容</h1>
+  <button id="btn">对话框</button>
+
+  <script>
+    var over = document.querySelector('.over')
+    var dialog = document.querySelector('.dialog')
+    var btn = document.querySelector('#btn')
+    var close = document.querySelector('.close')
+    btn.addEventListener('click', (e) => {
+      over.style.display = 'block'
+      dialog.style.display = 'block'
+    })
+    close.addEventListener('click', (e) => {
+      over.style.display = 'none'
+      dialog.style.display = 'none'
+    })
+  </script>
+</body>
+
+</html>
